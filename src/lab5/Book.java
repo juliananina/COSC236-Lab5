@@ -1,6 +1,11 @@
 package lab5;
 
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:src/lab5/Book.java
 public class Book {
+========
+public class PaperBook implements Book {
+>>>>>>>> Stashed changes:src/lab5/PaperBook.java
 	
 	private String title;
 	private boolean isAvailable;
@@ -24,4 +29,11 @@ public class Book {
 	public boolean getIsAvailable() {
 		return isAvailable;
 	}
+=======
+public interface Book {
+	public String getTitle();
+	public void setIsAvailable(boolean isAvailable);
+	public boolean getIsAvailable();
+	public String toString();
+>>>>>>> Stashed changes
 }
