@@ -30,7 +30,7 @@ public class BorrowingService implements BorrowingServiceAPI {
 
 	    member.getBorrowedBooks().remove(book);
 	    book.setIsAvailable(true);
-	    System.out.println("Returned: " + book);
+	    System.out.println("Returning book: " + book);
 	    return true;
 		
 		
