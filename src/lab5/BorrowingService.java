@@ -2,45 +2,39 @@ package lab5;
 
 public class BorrowingService implements BorrowingServiceAPI {
 
-	@Override
-	public boolean borrowBook(Member member, Book book) {
-	    if (member == null || book == null) {
-	        System.out.println("Member or book does not exist");
-	        return false;
-	    }
-	   
-	    if(member.getBorrowedBooks().contains(book)) {
-			 System.out.println("Member already has this book");
-			 return false;
-		 }
-	    if (!book.getIsAvailable()) {
-	        System.out.println("Book is not available to be borrowed: " + book.getTitle());
-	        return false;
-	    }
+	public BorrowingBookResult borrowBook(Member member, Book book) {
+		if (member == null || book == null) {
+			return new BorrowingBookResult(false, "Member or book do not exist");
+		}
 
-	    member.getBorrowedBooks().add(book);
-	    book.setIsAvailable(false);
-	    System.out.println("Borrowing book: " + book);
-	    return true;
+		if(member.getBorrowedBooks().contains(book)) {
+			return new BorrowingBookResult(false, member.getName() + " already has this book");
+		}
+		if (!book.getIsAvailable()) {
+			return new BorrowingBookResult(false, book.getTitle() + " is not available to be borrowed");
+		}
+		if(member.getBorrowedBooks().size() >= 3) {
+			return new BorrowingBookResult(false, member.getName() + " already has 3 books. Cannot borrow anymore");
+		}
+		//success
+		member.getBorrowedBooks().add(book);
+		book.setIsAvailable(false);
+		return new BorrowingBookResult(true, book.getTitle() + " borrowed successfully");
 	}
 
 
-	@Override
-	public boolean returnBook(Member member, Book book) {
+	public BorrowingBookResult returnBook(Member member, Book book) {
 		if (member == null || book == null) {
-	        System.out.println("Member or book does not exist");
-	        return false;
-	    }
-		 if(!member.getBorrowedBooks().contains(book)) {
-			 System.out.println("Member does not have this book");
-			 return false;
-		 }
+			return new BorrowingBookResult(false, "Member or book do not exist");
+		}
+		if(!member.getBorrowedBooks().contains(book)) {
+			return new BorrowingBookResult(false, member.getName() + " does not have this book");
+		}
 
-	    member.getBorrowedBooks().remove(book);
-	    book.setIsAvailable(true);
-	    System.out.println("Returning book: " + book);
-	    return true;
-		
-		
+		member.getBorrowedBooks().remove(book);
+		book.setIsAvailable(true);
+		return new BorrowingBookResult(true, book.getTitle() + " returned successfully");
+
+
 	}
 }
