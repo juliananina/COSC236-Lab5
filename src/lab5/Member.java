@@ -7,7 +7,7 @@ public class Member {
 
 	private String name;
 	private ArrayList<Book> borrowedBooks; // Book class dependency
-	
+
 	public Member(String name) {
 		this.name = name;
 		this.borrowedBooks = new ArrayList<>();
@@ -26,23 +26,14 @@ public class Member {
 	}
 	public void borrowBook(Book book) {
 		BorrowingService borrowingService = new BorrowingService();
-		boolean success = borrowingService.borrowBook(this, book);
-		if(success){
-			System.out.println("Book borrowed succesfully");
-		} else {
-			System.out.println("Cannot borrow book");
-		}
+		BorrowingBookResult bbr = borrowingService.borrowBook(this, book);
+		System.out.println("Success: " + bbr.getIsSuccess() + ": " + bbr.getBorrowingMessage()); 
 
 	}
 	public void returnBook(Book book) {
 		BorrowingService borrowingService = new BorrowingService();
-		boolean success = borrowingService.returnBook(this, book); 
-		if(success) {
-			System.out.println("Book returned succesfully");
-		} else {
-			System.out.println("Cannot return book");
-		}
-
+		BorrowingBookResult bbr = borrowingService.returnBook(this, book); 
+		System.out.println("Success: " + bbr.getIsSuccess() + ": " + bbr.getBorrowingMessage());
 	}
 	public void listBorrowedBooks() {
 		for (Book book : borrowedBooks)
@@ -53,10 +44,10 @@ public class Member {
 	}
 	public void returnAllBooks() {
 		Iterator<Book> bookIterator = borrowedBooks.iterator();
-	    while(bookIterator.hasNext()) {
-		   	 Book book = bookIterator.next();
-		   	 book.setIsAvailable(true);
-	    }
-	    borrowedBooks.clear(); // clear array of borrowed books
+		while(bookIterator.hasNext()) {
+			Book book = bookIterator.next();
+			book.setIsAvailable(true);
+		}
+		borrowedBooks.clear(); // clear array of borrowed books
 	}
 }
