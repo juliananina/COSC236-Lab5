@@ -25,16 +25,24 @@ public class Member {
 		return "Member: " + name;
 	}
 	public void borrowBook(Book book) {
-		if (book != null && book.getIsAvailable() == true) {
-			borrowedBooks.add(book);
-			book.setIsAvailable(false);
+		BorrowingService borrowingService = new BorrowingService();
+		boolean success = borrowingService.borrowBook(this, book);
+		if(success){
+			System.out.println("Book borrowed succesfully");
+		} else {
+			System.out.println("Cannot borrow book");
 		}
+
 	}
 	public void returnBook(Book book) {
-		if (book != null) {
-			borrowedBooks.remove(book);
-			book.setIsAvailable(true);
+		BorrowingService borrowingService = new BorrowingService();
+		boolean success = borrowingService.returnBook(this, book); 
+		if(success) {
+			System.out.println("Book returned succesfully");
+		} else {
+			System.out.println("Cannot return book");
 		}
+
 	}
 	public void listBorrowedBooks() {
 		for (Book book : borrowedBooks)
