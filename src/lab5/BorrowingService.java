@@ -1,6 +1,15 @@
 package lab5;
 
 public class BorrowingService implements BorrowingServiceAPI {
+	private BorrowingService() {}
+	
+	private static class BorrowingServiceHelper {
+		private static final BorrowingService INSTANCE = new BorrowingService();
+	}
+	
+	public static BorrowingService getInstance() {
+		return BorrowingServiceHelper.INSTANCE;
+	}
 
 	public BorrowingBookResult borrowBook(Member member, Book book) {
 		if (member == null || book == null) {
