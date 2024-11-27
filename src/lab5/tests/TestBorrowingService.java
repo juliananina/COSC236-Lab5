@@ -36,56 +36,56 @@ public class TestBorrowingService {
 
 	@Test
 	public void testValidBorrow() {
-		assertTrue(borrow.borrowBook(member1, paperbook));
+		assertTrue(borrow.borrowBook(member1, paperbook).getIsSuccess());
 	}
 
 	@Test
 	public void testBorrowUnavailable() {
-		assertFalse(borrow.borrowBook(member1, audiobook));
+		assertFalse(borrow.borrowBook(member1, audiobook).getIsSuccess());
 	}
 
 	@Test
 	public void testBorrowAlreadyBorrowed() {
 		borrow.borrowBook(member1, paperbook);
-		assertFalse(borrow.borrowBook(member2, paperbook));
+		assertFalse(borrow.borrowBook(member2, paperbook).getIsSuccess());
 	}
 	
 	@Test
 	public void testBorrowNullBook() {
-		assertFalse(borrow.borrowBook(member1, null));
+		assertFalse(borrow.borrowBook(member1, null).getIsSuccess());
 	}
 
 	@Test
 	public void testBorrowNullMember() {
-		assertFalse(borrow.borrowBook(null, paperbook));
+		assertFalse(borrow.borrowBook(null, paperbook).getIsSuccess());
 	}
 
 	@Test
 	public void testValidReturn() {
 		borrow.borrowBook(member1, ebook);
-		assertTrue(borrow.returnBook(member1, ebook));
+		assertTrue(borrow.returnBook(member1, ebook).getIsSuccess());
 	}
 
 	@Test
 	public void testReturnAlreadyReturned() {
 		borrow.borrowBook(member1, ebook);
 		borrow.returnBook(member1, ebook);
-		assertFalse(borrow.returnBook(member1, ebook));
+		assertFalse(borrow.returnBook(member1, ebook).getIsSuccess());
 	}
 
 	@Test
 	public void testReturnUnborrowedBook() {
-		assertFalse(borrow.returnBook(member1, ebook));
+		assertFalse(borrow.returnBook(member1, ebook).getIsSuccess());
 	}
 
 	@Test
 	public void testReturnNullBook() {
-		assertFalse(borrow.returnBook(member1, null));
+		assertFalse(borrow.returnBook(member1, null).getIsSuccess());
 	}
 
 	@Test
 	public void testReturnNullMember() {
-		assertFalse(borrow.returnBook(null, paperbook));
+		assertFalse(borrow.returnBook(null, paperbook).getIsSuccess());
 	}
 
 }
