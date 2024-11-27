@@ -26,7 +26,7 @@ public class TestBorrowingService {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		borrow = new BorrowingService();
+		borrow = BorrowingService.getInstance();
 		member1 = new Member("Alice"); // flush borrowedBook array 
 		member2 = new Member("Bob");   // flush borrowedBook array 
 		paperbook.setIsAvailable(true);

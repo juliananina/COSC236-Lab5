@@ -25,13 +25,13 @@ public class Member {
 		return "Member: " + name;
 	}
 	public void borrowBook(Book book) {
-		BorrowingService borrowingService = new BorrowingService();
+		BorrowingService borrowingService = BorrowingService.getInstance();
 		BorrowingBookResult bbr = borrowingService.borrowBook(this, book);
 		System.out.println("Success: " + bbr.getIsSuccess() + ": " + bbr.getBorrowingMessage()); 
 
 	}
 	public void returnBook(Book book) {
-		BorrowingService borrowingService = new BorrowingService();
+		BorrowingService borrowingService = BorrowingService.getInstance();
 		BorrowingBookResult bbr = borrowingService.returnBook(this, book); 
 		System.out.println("Success: " + bbr.getIsSuccess() + ": " + bbr.getBorrowingMessage());
 	}
