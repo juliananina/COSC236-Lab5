@@ -10,8 +10,6 @@ import lab5.Member;
 import lab5.PaperBook;
 import lab5.AudioBook;
 import lab5.Book;
-import lab5.Library;
-import lab5.LibrarianController;
 import lab5.BorrowingService;
 import lab5.EBook;
 
@@ -27,8 +25,8 @@ public class TestBorrowingService {
 	@BeforeEach
 	void setUp() throws Exception {
 		borrow = BorrowingService.getInstance();
-		member1 = new Member("Alice"); // flush borrowedBook array 
-		member2 = new Member("Bob");   // flush borrowedBook array 
+		member1 = new Member("Alice", borrow); // flush borrowedBook array 
+		member2 = new Member("Bob", borrow);   // flush borrowedBook array 
 		paperbook.setIsAvailable(true);
 		audiobook.setIsAvailable(false);
 		ebook.setIsAvailable(true);

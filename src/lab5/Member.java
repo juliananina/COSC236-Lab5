@@ -14,6 +14,9 @@ public class Member {
 		this.borrowedBooks = new ArrayList<>();
 		this.borrowingService = borrowingService;
 	}
+	public BorrowingService getBorrowingService() {
+		return borrowingService;
+	}
 	public String getName() {
 		return name;
 	}
