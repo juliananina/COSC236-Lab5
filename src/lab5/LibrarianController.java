@@ -11,7 +11,7 @@ public class LibrarianController {
 	public LibrarianController( ) {
 		this.library = new Library(); // Constructor injection
 		this.borrowingService = BorrowingService.getInstance();
-		this.audiobookFactory = new PaperBookFactory();
+		this.paperbookFactory = new PaperBookFactory();
 		this.ebookFactory = new EBookFactory();
 		this.audiobookFactory = new AudioBookFactory();
 	}
