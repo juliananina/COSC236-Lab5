@@ -25,6 +25,9 @@ public class LibrarianController {
 	public void showMembers() {
 		library.showMembers();
 	}
+	public void addBook(BookFactory factory, String title) {
+		library.addBook(factory.createBook(title));
+		}
 	public void addPaperBook(String title) {
 		library.addBook(paperbookFactory.createBook(title));  // PaperBook class constructor dependency
 	}
