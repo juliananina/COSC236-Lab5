@@ -26,13 +26,13 @@ public class LibrarianController {
 		library.showMembers();
 	}
 	public void addPaperBook(String title) {
-		library.addBook(new PaperBook(title));  // PaperBook class constructor dependency
+		library.addBook(paperbookFactory.createBook(title));  // PaperBook class constructor dependency
 	}
 	public void addEBook(String title) {
-		library.addBook(new EBook(title));  // EBook class constructor dependency
+		library.addBook(ebookFactory.createBook(title));  // EBook class constructor dependency
 	}
 	public void addAudioBook(String title) {
-		library.addBook(new AudioBook(title));  // AudioBook class constructor dependency
+		library.addBook(audiobookFactory.createBook(title));  // AudioBook class constructor dependency
 	}
 	public void addMember(String name) {
 		library.addMember(new Member(name, borrowingService)); // Member class constructor dependency
